@@ -1,5 +1,48 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  h1 List words
+
+  div
+    ul
+      - for (var i = 0; i < words.length; i ++) {
+      li Word: #{words[i].word}
+      li Meaning #{words[i].meaning}
+      li
+        ul
+          - for (var j = 0; j < words[i].tags.length; j ++) {
+            li #{words[i].tags[j]}
+          -}
+      li
+        ul
+          - for (var k = 0; j < words[k].examples.length; k ++) {
+          li #{words[i].examples[k]}
+          -}
+      li Pronunciation #{words[i].pronunciation}
+      li ----------------------------
+      - }
+
+  div
+    form(action='/api/words/',method='post',)
+      div(data-role='fieldcontain')
+        fieldset(data-role='controlgroup')
+          label(for='word') word
+            input(id='word',type='text',value='',name='word')
+      div(data-role='fieldcontain')
+        fieldset(data-role='controlgroup')
+          label(for='tags') tags
+            input(id='tags',type='text',value='',name='tags')
+      div(data-role='fieldcontain')
+        fieldset(data-role='controlgroup')
+          label(for='examples') examples
+            input(id='examples',type='text',value='',name='examples')
+      div(data-role='fieldcontain')
+        fieldset(data-role='controlgroup')
+          label(for='pronunciation') pronunciation
+            input(id='pronunciation',type='text',value='',name='pronunciation')
+      div(data-role='fieldcontain')
+        fieldset(data-role='controlgroup')
+          label(for='meaning') meaning
+            input(id='meaning',type='text',value='',name='meaning')
+      div(data-role='fieldcontain')
+        input(type='submit',value='Add',data-transition='fade', data-theme='c')

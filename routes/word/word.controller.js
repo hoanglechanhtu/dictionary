@@ -28,6 +28,8 @@ exports.show = function(req, res) {
 };
 
 exports.create = function(req, res) {
+    req.body.tags = req.body.tags.split(",")
+    req.body.examples = req.body.examples.split(",")
     Word.create(req.body, function (err, word) {
         if (err) {
             return handleError(res, err);
